@@ -1,0 +1,114 @@
+﻿<Window x:Class="Volkswagen_Automobili.Pages.TabelaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Volkswagen_Automobili.Pages"
+        mc:Ignorable="d"
+        Title="TabelaWindow" ResizeMode="NoResize" AllowsTransparency="True" WindowStyle="None" Background="#001236"
+        Height="510" Width="720" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Canvas>
+            <Image Source="C:\Users\Matija\Desktop\FTN\6_Semestar\IUIS\IUIS_projekat_PR131_2022\VWslike\volfsburg.png" 
+                   VerticalAlignment="Top" HorizontalAlignment="Left" Height="510" Width="720"/>
+
+            <!-- Bottom Bar -->
+            <Border Background="Black" Width="720" Height="100"
+            Canvas.Left="0" Canvas.Top="412" HorizontalAlignment="Center" VerticalAlignment="Top" Opacity="0.85">
+                <Grid Margin="20,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="18*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- dugmad levo -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,20,0,0" Grid.RowSpan="2">
+                        <!-- login dugme -->
+                        <Button Content="Log out" Width="123" Height="60" FontSize="20" FontFamily="Segoe UI" x:Name="logout_button"
+                        Background="#007ACC" Foreground="White" BorderThickness="0" Cursor="Hand" Click="logout_button_Click"/>
+                        <!-- Add Item -->
+                        <Button Content="Add Item" Width="120" Height="60" FontSize="20" FontFamily="Segoe UI" Margin="10,0" x:Name="add_button"
+                        Background="#007ACC" Foreground="White" BorderThickness="0" Cursor="Hand" Click="add_button_Click" />
+                    </StackPanel>
+
+                    <!-- Logo -->
+                    <Image Grid.Column="1" Source="/Images/vwBlueMini.png"
+                        Height="70" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0" Grid.RowSpan="2"/>
+
+                    <!-- Dugmad Desno -->
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,0,0" Grid.RowSpan="2">
+                        <!-- Delete Item -->
+                        <Button Content="Delete Item" Width="120" Height="60" FontSize="20" FontFamily="Segoe UI" Margin="10,0"
+                        Background="#007ACC" Foreground="White" BorderThickness="0" Cursor="Hand" x:Name="delete_button" Click="delete_button_Click"/>
+                        <!-- Exit 
+                        <Button Content="Exit" Width="127" Height="60" FontSize="20" FontFamily="Segoe UI" x:Name="exit_button"
+                        Background="#007ACC" Foreground="White" BorderThickness="0" Cursor="Hand" />
+                        -->
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Label Content="Das Auto." Canvas.Left="329" Canvas.Top="486" Foreground="White" FontSize="12" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        </Canvas>
+
+
+        <DataGrid x:Name="myDataGrid" AutoGenerateColumns="False" HeadersVisibility="Column" Background="White" Opacity="0.95" RowHeight="70"
+          ItemsSource="{Binding Automobili}" Margin="10,10,10,110" CanUserAddRows="False" SelectionMode="Extended" >
+            
+            <!-- dodat za vertikalno centriranje -->
+            <DataGrid.Columns>
+                
+                <!-- checkbox -->
+                <DataGridTemplateColumn Width="30">
+                    <DataGridTemplateColumn.Header>
+                        <CheckBox x:Name="SelectAllCheckBox" Click="SelectAllBoxes_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- hyperlink -->
+                <DataGridTemplateColumn Header="Model Name" Width="105">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16">
+                        <Hyperlink NavigateUri="{Binding RTFpath}" Click="HyperLink_Click" >
+                            <TextBlock Text="{Binding name}" TextAlignment="Center"/>
+                        </Hyperlink>
+                    </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- slika -->
+                <DataGridTemplateColumn Header="Image">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding slikaPath}"  Height="70" Width="120" Stretch="Uniform" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Price ($)" Width="105">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding cena}" FontSize="16">
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- datum -->
+                <DataGridTextColumn Header="Date" Binding="{Binding date}" Width="*" FontSize="16" />
+                
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

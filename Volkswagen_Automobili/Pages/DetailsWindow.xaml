@@ -1,0 +1,27 @@
+﻿<Window x:Class="Volkswagen_Automobili.Pages.DetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  WindowStartupLocation="CenterScreen"
+        Title="Detalji vozila" Height="500" Width="450" ResizeMode="NoResize" AllowsTransparency="True" WindowStyle="None" Background="#001236">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Image x:Name="vehicleImage" Height="150" Margin="0,0,0,10"/>
+        <TextBox x:Name="nameTextBox" Grid.Row="1" Margin="0,5" HorizontalContentAlignment="Center" FontSize="16"/>
+        <TextBox x:Name="priceTextBox" Grid.Row="2" Margin="0,5,219,5" HorizontalContentAlignment="Center" FontSize="16"/>
+        <TextBox x:Name="dateTextBox"  IsReadOnly="True" HorizontalContentAlignment="Center" FontSize="16" Margin="220,5,0,5" Grid.Row="2"/>
+        <RichTextBox x:Name="rtfViewer" FontSize="14" Grid.Row="3" Margin="0,10,0,48" />
+
+        <Button x:Name="SacuvajBT" Grid.Row="3" Content="Save" Width="118" HorizontalAlignment="Right" Click="saveButton_Click" Margin="0,221,0,0" Grid.RowSpan="2"
+                Background="#007ACC" Foreground="White" BorderThickness="0" Cursor="Hand" FontSize="20" FontFamily="Segoe UI"/>
+        <Button x:Name="LeaveBT" Grid.Row="3" Content="Leave" Width="118" HorizontalAlignment="Right" Margin="0,221,312,0"
+        Background="#007ACC" Foreground="White" BorderThickness="0" Cursor="Hand" FontSize="20" FontFamily="Segoe UI" Click="LeaveBT_Click"/>
+        <Button Content="Change IMG" Grid.Row="3" Width="118" HorizontalAlignment="Center" Margin="0,221,0,0" x:Name="ChangeImageBT"
+        Background="#007ACC" Foreground="White" BorderThickness="0" Cursor="Hand" FontSize="20" FontFamily="Segoe UI" Click="changeIMG_Click"/>
+    </Grid>
+</Window>

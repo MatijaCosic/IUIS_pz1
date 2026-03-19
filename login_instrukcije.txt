@@ -1,0 +1,11 @@
+info for logging in:
+	-as admin:
+		-username: admin
+		-password: admin
+	-as user:
+		-username: user
+		-password: user
+-------------------------------------------
+*NOTICE: the original project was finished half a year before uploading this version. 
+I changed the code so that some images read from the project (I had issues with image visibility on other devices since in the original version it read the relative path from my PC).
+-------------------------------------------
